@@ -30,7 +30,7 @@ An end-to-end MLOps CI/CD pipeline built with **Python**, **scikit-learn**, **py
    * **Cause:** Trained an underfit 1-tree `RandomForestRegressor` (`max_depth=1`). 
    * **Outcome:** Quality gate check intercepted performance regression (`candidate_mse` exceeded threshold). The step exited via `sys.exit(1)` and blocked package publication.
 2. **Failure B - Application Test Breach:** 
-   * **Run Link:** `[PASTE_LINK_TO_FAILED_RUN_2]`
+   * **Run Link:** https://github.com/prachig09/california-housing-mlops/actions/runs/35986738469/job/107591073468
    * **Cause:** Injected schema test assertion error in `tests/test_app.py`.
    * **Outcome:** `pytest` caught the broken contract test and terminated execution, preventing deployment of a broken prediction interface.
 3. **Final Successful Pipeline:** 
