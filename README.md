@@ -26,7 +26,7 @@ An end-to-end MLOps CI/CD pipeline built with **Python**, **scikit-learn**, **py
 ## CI/CD Pipeline Failure & Recovery Demonstration
 
 1. **Failure A - Model Quality Gate Breach:** 
-   * **Run Link:** `[PASTE_LINK_TO_FAILED_RUN_1]`
+   * **Run Link:** https://github.com/prachig09/california-housing-mlops/actions/runs/35986229225/job/107589421589
    * **Cause:** Trained an underfit 1-tree `RandomForestRegressor` (`max_depth=1`). 
    * **Outcome:** Quality gate check intercepted performance regression (`candidate_mse` exceeded threshold). The step exited via `sys.exit(1)` and blocked package publication.
 2. **Failure B - Application Test Breach:** 

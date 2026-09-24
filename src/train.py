@@ -85,4 +85,4 @@ def train_and_evaluate(artificially_fail_gate=False):
 
 if __name__ == "__main__":
     fail_flag = "--fail-gate" in sys.argv
-    train_and_evaluate(artificially_fail_gate=True)
+    train_and_evaluate(artificially_fail_gate=fail_flag)

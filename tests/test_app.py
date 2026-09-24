@@ -34,7 +34,7 @@ def test_prediction_output_shape_and_type(valid_sample):
 
 def test_missing_feature_rejection(valid_sample):
     """Verify schema mismatch rejection with clear error message."""
-    invalid_sample = valid_sample.drop(columns=["MedInc"])
+    invalid_sample = valid_sample.copy(columns=["MedInc"])
     
     with pytest.raises(ValueError, match="Input dataframe missing required features"):
         predict(invalid_sample, model_path=MODEL_PATH)
