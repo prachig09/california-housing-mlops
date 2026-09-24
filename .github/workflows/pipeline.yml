@@ -34,7 +34,7 @@ jobs:
       run: |
         cp src/predict.py artifact_build/
         cp requirements.txt artifact_build/
-        pytest tests/
+        python -m pytest tests/
 
     - name: Publish Validated Model Package Artifact
       if: success()
