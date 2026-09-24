@@ -1,0 +1,45 @@
+name: MLOps Automated Training & Validation Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-train-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Load and Validate Dataset
+      run: |
+        python -m src.data
+
+    - name: Train Baseline & Candidate Model
+      run: |
+        python -m src.train
+
+    - name: Run Application Tests
+      run: |
+        cp src/predict.py artifact_build/
+        cp requirements.txt artifact_build/
+        pytest tests/
+
+    - name: Publish Validated Model Package Artifact
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: california-housing-model-run-${{ github.run_number }}-commit-${{ github.sha }}
+        path: artifact_build/
+        retention-days: 14
